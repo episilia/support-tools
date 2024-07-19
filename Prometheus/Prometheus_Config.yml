@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-server
+  namespace: episilia
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 10s
+      evaluation_interval: 10s
+
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets: 
+              - alertmanager:5060
+
+    rule_files:
+      - "/etc/prometheus/prometheus.rules"
+
+    scrape_configs:
+      - job_name: 'spike'
+        static_configs:
+          - targets: ['episilia-spike:9090']
+          
+  prometheus.rules: |
+      groups:
+      - name: example_rules
+        rules:
+        - alert: normalQuerying
+          expr: NORMAL_QUERY > 0
+          for: 10s
+          labels:
+            severity: "warning"
+          annotations:
+            summary: 'Normal querying alert'
+            description: '{{$labels.job}}'
+            identifier: '{{$labels.instance}}'
+
+        - alert: regexQuerying
+          expr: REGEX_QUERY > 0
+          for: 10s
+          labels:
+            severity: "warning"
+          annotations:
+            summary: 'Regex querying alert'
+            description: '{{$labels.job}}'
+            identifier: '{{$labels.instance}}'
