@@ -30,15 +30,15 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 2020
-        # env:
-        # - name: AWS_ACCESS_KEY_ID
-        #   value: ""
-        # - name: AWS_SECRET_ACCESS_KEY
-        #   value: ""
-        # - name: AWS_ENDPOINT_URL
-        #   value: ""
-        # - name: AWS_REGION
-        #   value: ""
+        env:
+        - name: AWS_ACCESS_KEY_ID
+          value: ""
+        - name: AWS_SECRET_ACCESS_KEY
+          value: ""
+        - name: AWS_ENDPOINT_URL
+          value: ""
+        - name: AWS_REGION
+          value: ""
         volumeMounts:
         - name: varlog
           mountPath: /var/log
