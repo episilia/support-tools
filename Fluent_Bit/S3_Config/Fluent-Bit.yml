@@ -31,13 +31,15 @@ spec:
         ports:
         - containerPort: 2020
         env:
-        - name: AWS_ACCESS_KEY_ID
+        - name: AWS_ACCESS_KEY_ID       # ignore this when you want to authenticate using arn role
           value: ""
-        - name: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SECRET_ACCESS_KEY   # ignore this when you want to authenticate using arn role
           value: ""
-        - name: AWS_ENDPOINT_URL
+        - name: AWS_ENDPOINT_URL        # ignore this when you want to authenticate using arn role
           value: ""
-        - name: AWS_REGION
+        - name: AWS_REGION              
+          value: ""
+        - name: AWS_ROLE_ARN            # use this when you want to authenticate using arn role
           value: ""
         volumeMounts:
         - name: varlog

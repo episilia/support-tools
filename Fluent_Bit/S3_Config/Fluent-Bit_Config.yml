@@ -69,7 +69,8 @@ data:
       bucket                <bucket-name>
       region                <region>
       s3_key_format         /<folder-name>/$TAG[4]/%Y%m%d/%H/$UUID.gz
-      endpoint              <s3-endpoint>
+      endpoint              <s3-endpoint>   # ignore this when you want to authenticate using arn role
+      role_arn              <arn-role>      # use this when you want to authenticate using arn role
       total_file_size       5M
       upload_timeout        1m
       use_put_object        On
