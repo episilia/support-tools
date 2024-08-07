@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-logger
+  namespace: episilia
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+   app: dummy-logger
+ template:
+   metadata:
+    labels:
+     app: dummy-logger
+   spec:
+    containers:
+    - name: demo
+      image: nikhils08/dummy-logger:latest
+      imagePullPolicy: Always
