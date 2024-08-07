@@ -66,11 +66,6 @@ data:
       script convert_timestamp.lua
       call convert_timestamp
 
-    [FILTER]
-      Name         modify
-      Match        kube.*
-      Add          app_id kubernetes_container_name ${record['kubernetes']['container_name']}
-      Add          tenant_id kubernetes_namespace_name ${record['kubernetes']['namespace_name']}
 
   output-kafka.conf: |
     [OUTPUT]
